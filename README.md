@@ -12,8 +12,7 @@ Requirements:
 
 ## Deploy process (locally)
 
-
-1.  Build Docker image
+Build Docker image
 
 ```bash
 make
@@ -21,9 +20,13 @@ make
 
 ## Demo
 
+Add news
+
 ```bash
 curl -X POST http://localhost:8080/news -H "Content-Type: application/json" -d '{"Title": "News 1"}'
 ```
+
+Fetch news by `id`
 
 ```bash
 curl -X GET http://localhost:8080/news/1
