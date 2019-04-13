@@ -1,7 +1,7 @@
 ## Roles
 
 Developer __Vitaly Velikodny__
-  * @vvelikodny
+  * [@vvelikodny](https://github.com/vvelikodny)
   * [vvelikodny@gmail.com](mailto:vvelikodny@gmail.com)  
 
 ## Requirements:
