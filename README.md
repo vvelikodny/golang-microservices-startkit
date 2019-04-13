@@ -12,7 +12,7 @@ Developer __Vitaly Velikodny__
 
 ## Deploy process (locally)
 
-Build Docker image
+Build services and run Docker containers
 
 ```bash
 make
