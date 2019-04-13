@@ -1,0 +1,11 @@
+syntax = "proto3";
+package news;
+
+message News {
+    int64 id = 1;
+    string title = 2;
+}
+
+message GetNewsByIdRequest {
+    int64 id = 1;
+}

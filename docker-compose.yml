@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  query_client_service:
+    image: registry.gitlab.com/vvelikodny/golang-microservices-test/query-client-service
+    ports:
+      - 8080:8080
+    volumes:
+      - /etc/ssl/certs:/etc/ssl/certs
+    depends_on:
+      - db
+    restart: always
+  storage_service:
+    image: registry.gitlab.com/vvelikodny/golang-microservices-test/storage-service
+    volumes:
+      - /etc/ssl/certs:/etc/ssl/certs
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    depends_on:
+      - natsd
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
+  natsd:
+    image: nats:latest
+    ports:
+      - 4222:4222
+      - 8222:8222
+    restart: always
