@@ -33,8 +33,7 @@ func TestCreateNewsError(t *testing.T) {
 
 	req, _ := http.NewRequest(http.MethodPost, "/news", bytes.NewBuffer([]byte(`{"Title": "Hello, Golang!"}`)))
 	response := executeRequest(t, app, req)
-
-	checkResponseCode(t, http.StatusInternalServerError, response.Code)
+	require.Equal(t, http.StatusInternalServerError, response.Code)
 
 	var m map[string]interface{}
 	require.Error(t, json.Unmarshal(response.Body.Bytes(), &m))
@@ -73,8 +72,7 @@ func TestGetNews(t *testing.T) {
 
 	req, _ := http.NewRequest(http.MethodGet, "/news/1", nil)
 	response := executeRequest(t, app, req)
-
-	checkResponseCode(t, http.StatusOK, response.Code)
+	require.Equal(t, http.StatusOK, response.Code)
 
 	var m news.News
 	require.NoError(t, json.Unmarshal(response.Body.Bytes(), &m))
@@ -86,10 +84,4 @@ func executeRequest(t *testing.T, app *App, req *http.Request) *httptest.Respons
 	rr := httptest.NewRecorder()
 	app.Router.ServeHTTP(rr, req)
 	return rr
-}
-
-func checkResponseCode(t *testing.T, expected, actual int) {
-	if expected != actual {
-		t.Errorf("Expected response code %d, but got %d\n", expected, actual)
-	}
 }

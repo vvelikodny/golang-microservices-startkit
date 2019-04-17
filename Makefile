@@ -12,7 +12,7 @@ run-env: build-services
 test:
 	make -C query-client-service test
 
-stop:
+stop-env:
 	@docker-compose stop
 	@docker-compose rm
 
