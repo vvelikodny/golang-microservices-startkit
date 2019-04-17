@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/vvelikodny/golang-microservices-test/news"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/news"
 )
 
 var app App

@@ -12,9 +12,9 @@ import (
 
 	"github.com/asaskevich/govalidator"
 	"github.com/golang/protobuf/proto"
-	"github.com/vvelikodny/golang-microservices-test/config"
-	"github.com/vvelikodny/golang-microservices-test/errors"
-	"github.com/vvelikodny/golang-microservices-test/news"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/config"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/errors"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/news"
 )
 
 type App struct {
