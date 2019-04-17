@@ -18,7 +18,7 @@ Developer __Vitaly Velikodny__
 Build services and run Docker containers
 
 ```bash
-make
+make run-env
 ```
 
 ## Demo
