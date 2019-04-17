@@ -3,7 +3,7 @@ HUB=registry.gitlab.com
 PROJECT=query-client-service
 IMAGE=vvelikodny/golang-microservices-test/$(PROJECT)
 
-all: deploy-local
+all: $(PROJECT)
 
 GOOS=linux
 GOARCH=amd64
@@ -15,7 +15,10 @@ clean:
 
 $(PROJECT): clean
 	echo Building for $(GOOS)/$(GOARCH)
-	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) GO111MODULE=$(GO111MODULE) GOFLAGS=$(GOFLAGS) go build -a -o ./$(PROJECT)
+	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) GO111MODULE=$(GO111MODULE) GOFLAGS=$(GOFLAGS) go build -a -o ./bin/$(PROJECT)
+
+test:
+	go test ./...
 
 docker-build: clean
 	@docker build -t $(HUB)/$(IMAGE) .

@@ -8,6 +8,6 @@ RUN make storage-service
 
 # run stage
 FROM alpine
-COPY --from=builder /go/src/gitlab.com/vvelikodny/golang-microservices-test/storage-service/storage-service /storage-service
+COPY --from=builder /go/src/gitlab.com/vvelikodny/golang-microservices-test/storage-service/bin/storage-service /storage-service
 
 ENTRYPOINT ["/storage-service"]
