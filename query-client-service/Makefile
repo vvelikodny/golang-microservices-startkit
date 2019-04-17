@@ -16,6 +16,7 @@ clean:
 $(PROJECT): clean
 	echo Building for $(GOOS)/$(GOARCH)
 	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) GO111MODULE=$(GO111MODULE) GOFLAGS=$(GOFLAGS) go build -a -o ./$(PROJECT)
+	go test ./...
 
 docker-build: clean
 	@docker build -t $(HUB)/$(IMAGE) .
