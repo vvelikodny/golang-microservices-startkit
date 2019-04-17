@@ -3,7 +3,7 @@ HUB=registry.gitlab.com
 PROJECT=query-client-service
 IMAGE=vvelikodny/golang-microservices-test/$(PROJECT)
 
-all: deploy-local
+all: $(PROJECT)
 
 GOOS=linux
 GOARCH=amd64

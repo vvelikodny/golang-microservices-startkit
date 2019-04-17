@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/vvelikodny/golang-microservices-test/config"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/config"
 )
 
 func main() {

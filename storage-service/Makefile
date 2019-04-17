@@ -2,7 +2,7 @@ PROJECT=storage-service
 HUB=registry.gitlab.com
 IMAGE=vvelikodny/golang-microservices-test/storage-service
 
-all: deploy-local
+all: $(PROJECT)
 
 GOOS=linux
 GOARCH=amd64
