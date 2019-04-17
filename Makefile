@@ -1,4 +1,4 @@
-all: deploy-local
+all: build-services
 
 build-services:
 	make -C query-client-service

@@ -1,4 +1,4 @@
-module github.com/vvelikodny/golang-microservices-test
+module github.com/vvelikodny/golang-microservices-test/query-client-service
 
 go 1.12
 

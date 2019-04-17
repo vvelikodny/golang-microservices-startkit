@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/vvelikodny/golang-microservices-test.svg?branch=master)](https://travis-ci.com/vvelikodny/golang-microservices-test)
+
 ## Roles
 
 Developer __Vitaly Velikodny__
@@ -5,10 +7,11 @@ Developer __Vitaly Velikodny__
   * [vvelikodny@gmail.com](mailto:vvelikodny@gmail.com)  
 
 ## Requirements:
-  * `protoc`
   * `go`
   * `docker`
   * `docker-compose`
+  
+  * `protoc` - to rebuilt protobuf
 
 ## Deploy process (locally)
 

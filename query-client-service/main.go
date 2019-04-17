@@ -1,11 +1,18 @@
 package main
 
 import (
-	"github.com/vvelikodny/golang-microservices-test/config"
+	"github.com/nats-io/go-nats"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/config"
+	"log"
 )
 
 func main() {
-	app := App{}
-	app.Init(config.NatsUrl)
+	nc, err := nats.Connect(config.NatsUrl)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("Connected to %s", nc.ConnectedUrl())
+
+	app := NewApp(nc)
 	app.Run()
 }

@@ -12,24 +12,31 @@ import (
 
 	"github.com/asaskevich/govalidator"
 	"github.com/golang/protobuf/proto"
-	"github.com/vvelikodny/golang-microservices-test/config"
-	"github.com/vvelikodny/golang-microservices-test/errors"
-	"github.com/vvelikodny/golang-microservices-test/news"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/config"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/errors"
+	"github.com/vvelikodny/golang-microservices-test/query-client-service/news"
 )
 
+type QueueConnection interface {
+	Request(subj string, data []byte, timeout time.Duration) (*nats.Msg, error)
+}
+
 type App struct {
-	Queue  *nats.Conn
+	queue  QueueConnection
 	Router *mux.Router
 }
 
-func (app *App) Init(natsURL string) {
-	nc, err := nats.Connect(natsURL)
-	if err != nil {
-		panic(err)
-	}
-	log.Printf("Connected to %s", nc.ConnectedUrl())
-	app.Queue = nc
+func (app *App) Queue() QueueConnection {
+	return app.queue
+}
 
+func NewApp(queue QueueConnection) *App {
+	app := &App{queue: queue}
+	app.Init()
+	return app
+}
+
+func (app *App) Init() {
 	app.Router = mux.NewRouter()
 	app.initializeRoutes()
 }
@@ -61,9 +68,9 @@ func (app *App) CreateNewsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	msg, err := app.Queue.Request(config.CreateNewsChannel, requestMsg, 500*time.Millisecond)
+	msg, err := app.Queue().Request(config.CreateNewsChannel, requestMsg, 500*time.Millisecond)
 	if err != nil {
-		errors.HttpError(w, fmt.Sprintf("request error: %v", err), http.StatusInternalServerError)
+		errors.HttpError(w, fmt.Sprintf("request error: %+v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -96,7 +103,7 @@ func (app *App) GetNewsByIdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	msg, err := app.Queue.Request(config.GetNewsChannel, requestMsg, 10*time.Second)
+	msg, err := app.Queue().Request(config.GetNewsChannel, requestMsg, 10*time.Second)
 	if err != nil {
 		errors.HttpError(w, fmt.Sprintf("request error: %v", err), http.StatusInternalServerError)
 		return
