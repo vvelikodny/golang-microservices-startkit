@@ -7,10 +7,11 @@ Developer __Vitaly Velikodny__
   * [vvelikodny@gmail.com](mailto:vvelikodny@gmail.com)  
 
 ## Requirements:
-  * `protoc`
   * `go`
   * `docker`
   * `docker-compose`
+  
+  * `protoc` - to rebuilt protobuf
 
 ## Deploy process (locally)
 
