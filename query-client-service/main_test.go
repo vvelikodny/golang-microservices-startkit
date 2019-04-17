@@ -27,7 +27,7 @@ func (mock *MockNatsConnection) Request(subj string, data []byte, timeout time.D
 
 func TestCreateNewsError(t *testing.T) {
 	nc := &MockNatsConnection{}
-	nc.On("Request", mock.Anything, mock.Anything, mock.Anything).Return(&nats.Msg{}, errors.New("error fro test"))
+	nc.On("Request", mock.Anything, mock.Anything, mock.Anything).Return(&nats.Msg{}, errors.New("error from test"))
 
 	app := NewApp(nc)
 
@@ -51,7 +51,6 @@ func TestCreateNews(t *testing.T) {
 	req, _ := http.NewRequest(http.MethodPost, "/news", bytes.NewBuffer([]byte(`{"Title": "Hello, Golang!"}`)))
 	response := executeRequest(t, app, req)
 
-	t.Logf("%+v", string(response.Body.Bytes()))
 	require.Equal(t, http.StatusCreated, response.Code)
 
 	var m map[string]interface{}
