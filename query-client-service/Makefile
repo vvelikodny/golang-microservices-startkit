@@ -13,7 +13,7 @@ GOFLAGS=-mod=vendor
 clean:
 	[ ! -f ./$(PROJECT) ] || rm ./$(PROJECT) || echo "-"
 
-$(PROJECT): clean
+$(PROJECT): clean lint
 	echo Building for $(GOOS)/$(GOARCH)
 	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) GO111MODULE=$(GO111MODULE) GOFLAGS=$(GOFLAGS) go build -a -o ./bin/$(PROJECT)
 
