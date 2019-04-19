@@ -21,7 +21,8 @@ test:
 	go test ./...
 
 lint:
-	go list ./... | grep -v /vendor/ | xargs -L1 golint
+	@go get -u golang.org/x/lint/golint
+	@go list ./... | grep -v /vendor/ | xargs -L1 golint
 
 docker-build: clean
 	@docker build -t $(HUB)/$(IMAGE) .
