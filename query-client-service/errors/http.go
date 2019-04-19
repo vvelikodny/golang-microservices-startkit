@@ -2,6 +2,7 @@ package errors
 
 import "net/http"
 
-func HttpError(w http.ResponseWriter, err string, code int) {
+// HTTPError replies as response with specific message & HTTP code.
+func HTTPError(w http.ResponseWriter, err string, code int) {
 	http.Error(w, err, code)
 }

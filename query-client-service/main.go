@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	nc, err := nats.Connect(config.NatsUrl)
+	nc, err := nats.Connect(config.NatsURL)
 	if err != nil {
 		panic(err)
 	}
