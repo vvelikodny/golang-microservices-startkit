@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/vvelikodny/golang-microservices-test.svg?branch=master)](https://travis-ci.com/vvelikodny/golang-microservices-test)
+[![Build Status](https://travis-ci.com/vvelikodny/golang-microservices-startkit.svg?branch=master)](https://travis-ci.com/vvelikodny/golang-microservices-startkit)
 
 ## Roles
 
